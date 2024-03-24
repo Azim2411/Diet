@@ -38,7 +38,7 @@ const MealPlan = ({ data }) => {
   return (
     <div className="meal-plan-container">
       {Object.entries(groupedData).map(([month, monthData]) => {
-        console.log("group",groupedData)
+        
         const [year, monthNumber] = month.split('-');
         const daysInMonth = getDaysInMonth(year, monthNumber);
         const firstDayOfMonth = new Date(year, monthNumber - 1, 1).getDay(); // Day of the week (0-6)
