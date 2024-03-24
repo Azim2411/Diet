@@ -3,7 +3,8 @@ import React from 'react';
 const MealPlan = ({ data }) => {
   // Function to get the number of days in a month
   const getDaysInMonth = (year, month) => {
-    return new Date(year, month, 0).getDate();
+    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    return lastDayOfMonth;
   };
 
   // Function to format date into the desired format
@@ -37,6 +38,7 @@ const MealPlan = ({ data }) => {
   return (
     <div className="meal-plan-container">
       {Object.entries(groupedData).map(([month, monthData]) => {
+        console.log("group",groupedData)
         const [year, monthNumber] = month.split('-');
         const daysInMonth = getDaysInMonth(year, monthNumber);
         const firstDayOfMonth = new Date(year, monthNumber - 1, 1).getDay(); // Day of the week (0-6)
@@ -61,12 +63,12 @@ const MealPlan = ({ data }) => {
                   <div key={index} className={`calendar-day ${dayOfWeek === 0 ? 'sunday' : ''}`}>
                     {dateString && (
                       <>
-                        <h3>{dateString.split(",")[0].split("-")[2]+","+dateString.split(",")[1]}</h3>
+                        <h3>{dateString.split(",")[0].split("-")[2] + "," + dateString.split(",")[1]}</h3>
                         <ul>
                           {meals ? (
                             Object.entries(meals).map(([mealType, meal], mealIndex) => (
                               <li key={mealIndex}>
-                                <strong>{mealType}:</strong> <br /> <span>Carbs:</span> {meal.Carbs},<br /> <span>Protein:</span> {meal.Protiein}
+                                <strong>{mealType}:</strong> <br /> <span>Carbs:</span> {meal.carbs.name}, <span>Amount:</span> {meal.carbs.carbs}gm<br /> <span>Protein:</span> {meal.protein.name} ,<span>Amount:</span> {meal.protein.protein}gm {/* Corrected typos in property names */}
                               </li>
                             ))
                           ) : (

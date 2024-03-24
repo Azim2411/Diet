@@ -23,12 +23,10 @@ export default function Home() {
     const search=()=>{
       axios.post("http://13.233.120.180:8080/diet",{Carbs_intake,Protien_intake,week}).then((res)=>{
         console.log(res.data.data)
-        setData(res.data.data )
+        setData(res.data.data)
       })
     }
 
-
- 
   return (
     <>
     {/* <button className="btn box-shadow" onClick={logout}>logout</button> */}
