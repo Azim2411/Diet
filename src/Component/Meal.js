@@ -9,7 +9,10 @@ const MealPlan = ({ data }) => {
 
   // Function to format date into the desired format
   const formatDate = (dateString) => {
+    
+    console.log(dateString)
     const date = new Date(dateString);
+    // console.log("date==========",date)
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -35,10 +38,11 @@ const MealPlan = ({ data }) => {
   ];
 
   // Render the calendar grid
+
   return (
     <div className="meal-plan-container">
       {Object.entries(groupedData).map(([month, monthData]) => {
-        
+        // console.log("data----------",month,monthData)
         const [year, monthNumber] = month.split('-');
         const daysInMonth = getDaysInMonth(year, monthNumber);
         const firstDayOfMonth = new Date(year, monthNumber - 1, 1).getDay(); // Day of the week (0-6)
@@ -54,17 +58,19 @@ const MealPlan = ({ data }) => {
             <h2>{monthNames[parseInt(monthNumber) - 1]} {year}</h2>
             <div className="calendar-grid">
               {paddedDaysArray.map((day, index) => {
+                // console.log("dat---",day)
                 const date = day ? new Date(year, monthNumber - 1, day) : null;
-                const dateString = date ? formatDate(date.toLocaleDateString()) : null;
+                const dateString = date ? formatDate(date) : null;
                 const meals = dateString && monthData[dateString]; // Get meals for the current date
                 const dayOfWeek = index % 7; // Calculate the day of the week (0-6)
-                
                 return (
                   <div key={index} className={`calendar-day ${dayOfWeek === 0 ? 'sunday' : ''}`}>
                     {dateString && (
                       <>
                         <h3>{dateString.split(",")[0].split("-")[2] + "," + dateString.split(",")[1]}</h3>
                         <ul>
+                            {/* {console.log("meal-------",meals)} */}
+                            {/* {console.log("dateString-------",dateString)} */}
                           {meals ? (
                             Object.entries(meals).map(([mealType, meal], mealIndex) => (
                               <li key={mealIndex}>
