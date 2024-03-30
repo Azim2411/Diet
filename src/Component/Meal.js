@@ -9,10 +9,8 @@ const MealPlan = ({ data }) => {
 
   // Function to format date into the desired format
   const formatDate = (dateString) => {
-    
     console.log(dateString)
     const date = new Date(dateString);
-    // console.log("date==========",date)
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -74,7 +72,7 @@ const MealPlan = ({ data }) => {
                           {meals ? (
                             Object.entries(meals).map(([mealType, meal], mealIndex) => (
                               <li key={mealIndex}>
-                                <strong>{mealType}:</strong> <br /> <span>Carbs:</span> {meal.carbs.name}, <span>Amount:</span> {meal.carbs.carbs}gm<br /> <span>Protein:</span> {meal.protein.name} ,<span>Amount:</span> {meal.protein.protein}gm {/* Corrected typos in property names */}
+                                <strong>{mealType}:</strong> <br /> <span>Carbs:</span> {meal.carbs.name}, <span>Amount:</span> {meal.carbs.carbs.toFixed(2)}gm<br /> <span>Protein:</span> {meal.protein.name} ,<span>Amount:</span> {meal.protein.protein.toFixed(2)}gm {/* Corrected typos in property names */}
                               </li>
                             ))
                           ) : (

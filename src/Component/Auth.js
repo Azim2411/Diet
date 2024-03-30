@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
-  const [authId, setAuthId] = useState("vickysoni");
-  const [authPassword, setAuthPassword] = useState("vicky@123");
+  const [authId, setAuthId] = useState("Ayaz memon");
+  const [authPassword, setAuthPassword] = useState("ayazmemon@123");
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
